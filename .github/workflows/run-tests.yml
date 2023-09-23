@@ -1,0 +1,19 @@
+name: Run Maven Tests
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code  #https://github.com/actions/checkout
+        uses: actions/checkout@v4
+      - name: Install JDK  # https://github.com/marketplace/actions/setup-java-jdk
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          architecture: x64
+#      - name: Run Maven verify
+#        run: mvn --batch-mode --update-snapshots verify
+      - name: Run Tests
+        run: mvn test
